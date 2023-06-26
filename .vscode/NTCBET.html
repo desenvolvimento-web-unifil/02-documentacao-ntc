@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela com Opções</title>
+    <style>
+      
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .input {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .saldo-disponivel {
+    margin-top: -124%;
+margin-right: -280%;
+  }
+  .Insira {
+    margin-top: 106%;
+    margin-left: 180%;
+  }
+  .mensagem {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+        .input input {
+            width: 200px;
+            height: 30px;
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .container {
+            background-color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .saldo {
+            position: absolute;
+            margin-top: -15.90%;
+            right: 17px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: rgb(133, 0, 0);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .retangulo {
+            background-color: blue;
+            height: 5vh;
+            width: 0%;
+            transition: width 2s ease-in-out;
+            position: relative;
+        }
+
+        .retangulo.loaded {
+            width: 100%;
+        }
+
+        .botoes {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            padding-right: 10px;
+        }
+
+        .botoes button {
+            margin-left: 10px;
+        }
+
+        .retangulo2 {
+            background-color: rgb(170, 170, 170);
+            height: 4vh;
+            width: 0%;
+            transition: width 2s ease-in-out;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .retangulo2.loaded {
+            width: 100%;
+        }
+        .icone-flamengo,
+        .icone-santos {
+            position: absolute;
+            top: -50px; /* Ajuste o posicionamento vertical do ícone Flamengo */
+            left: 28%;
+            transform: translateX(-50%);
+        }
+
+        .icone-santos {
+            right: 15%;
+            transform: translateX(50%);
+        }
+
+        .icone-flamengo img,
+        .icone-santos img {
+            width: 50px; /* Ajuste o tamanho dos ícones */
+            height: 30px;
+        }
+        .icone-Internacional,
+        .icone-América-MG {
+            position: absolute;
+            margin-top: -16%; /* Ajuste o posicionamento vertical do ícone Internacional */
+            left: 21%;
+            transform: translateX(-50%);
+        }
+
+        .icone-América-MG {
+            right: 25%;
+            transform: translateX(50%);
+        }
+
+        .icone-Internacional img,
+        .icone-América-MG img {
+            width: 50px; /* Ajuste o tamanho dos ícones */
+            height: 30px;
+        }
+        .icone-Grêmio,
+        .icone-Bahia {
+            position: absolute;
+            margin-top: -33%; /* Ajuste o posicionamento vertical do ícone Grêmio */
+            left: 24%;
+            transform: translateX(-50%);
+        }
+
+        .icone-Bahia{
+            right: 17%;
+            transform: translateX(50%);
+        }
+
+        .icone-Grêmio img,
+        .icone-Bahia img {
+            width: 50px; /* Ajuste o tamanho dos ícones */
+            height: 30px;
+        }
+        .opcoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 18px;
+            color: white;
+        }
+
+        .opcoes-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .opcoes-item img {
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .menu-lateral {
+            background-color: #f1f1f1;
+            width: 15%;
+            height: calc(100vh - 9vh);
+            position: fixed;
+            top: 9vh;
+            left: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .menu-lateral ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-lateral li {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .retangulo-cinza {
+            background-color: rgb(170, 170, 170);
+            height: 20vh;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .retangulo-customizado {
+            background-color: rgb(170, 170, 170);
+            height: 20vh;
+            width: 99%;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .texto-jogo {
+            position: absolute;
+            top: 48%;
+            left: 370px; /* Ajuste a posição aqui */
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .texto-jogo2 {
+            position: absolute;
+            margin-top: 52%;
+            left: 790px; /* Ajuste a posição aqui */
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .texto-jogo3 {
+            position: absolute;
+            margin-top: 35%;
+            left: 890px; /* Ajuste a posição aqui */
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+   
+        .flamengo-santos-separator {
+            width: 3px;
+            height: 40px;
+            background-color: black;
+            margin-top: -34%;
+            margin-right: -15%;
+        }
+        .Internacional-América-MG-separator {
+            width: 3px;
+            height: 40px;
+            background-color: black;
+            margin-top: -23%;
+            margin-right: 0%;
+        }
+        .Grêmio-Bahia-separator {
+            width: 3px;
+            height: 40px;
+            background-color: black;
+            margin-top: -45%;
+            margin-right: -9%;
+        }
+        .texto-jogo img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .botoes-jogo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -95px; /* Ajuste o espaçamento entre os botões e o texto */
+            margin-left: 190%;
+        }
+
+        .botao-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px; /* Ajuste o espaçamento entre os botões */
+            height: 30px;
+        }
+
+        .botao {
+            width: 80px;
+            height: 25px;
+        }
+
+        .botao-container span {
+            margin-left: 15px;
+            font-size: 15px; /* Ajuste o tamanho do texto */
+        }
+        .texto-jogo2 img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .botoes-jogo2 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -27%; /* Ajuste o espaçamento entre os botões e o texto */
+            margin-left: 167%;
+        }
+
+        .botao-container2 {
+            display: flex;
+            align-items: center;
+            margin-top: 20px; /* Ajuste o espaçamento entre os botões */
+            height: 30px;
+        }
+
+        .botao2 {
+            width: 80px;
+            height: 25px;
+        }
+
+        .botao-container2 span {
+            margin-left: 15px;
+            font-size: 15px; /* Ajuste o tamanho do texto */
+        }
+        .texto-jogo3 img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .botoes-jogo3 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -44%; /* Ajuste o espaçamento entre os botões e o texto */
+            margin-left: 205%;
+        }
+
+        .botao-container3 {
+            display: flex;
+            align-items: center;
+            margin-top: 20px; /* Ajuste o espaçamento entre os botões */
+            height: 30px;
+        }
+
+        .botao3 {
+            width: 80px;
+            height: 25px;
+        }
+
+        .botao-container3 span {
+            margin-left: 15px;
+            font-size: 15px; /* Ajuste o tamanho do texto */
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        <div class="retangulo">
+            <div class="botoes">
+                <button>Entrar</button>
+                <button>Cadastrar</button>
+            </div>
+        </div>
+        <div class="retangulo2">
+            <div class="opcoes">
+                <div class="opcoes-item">
+                    <img src="bola.png" alt="Bola de Futebol">
+                    Esportes
+                </div>
+                <div class="opcoes-item">
+                    <img src="computador.png" alt="Ícone de Computador">
+                    E-sports
+                </div>
+                <div class="opcoes-item">
+                    <img src="cartas.png" alt="Ícone de Cartas">
+                    Cassino
+                </div>
+            </div>
+              </div>
+        <div class="menu-lateral">
+            <ul>
+                <li>Futebol</li>
+                <li>Basquete</li>
+                <li>Tênis</li>
+                <li>Beisebol</li>
+                <li>Boxe</li>
+                <li>Ciclismo</li>
+                <li>Futebol Americano</li>
+                <li>Voleibol</li>
+            </ul>
+        </div>
+        
+        <div class="retangulo-cinza"></div>
+        <div class="retangulo-cinza"></div>
+        <div class="retangulo-customizado"></div>
+        <div class="retangulo-customizado"></div>
+        
+        <div class="texto-jogo">
+            <div class="icone-flamengo">
+                <img src="flamengo.png" alt="Flamengo">
+            </div>
+            Flamengo X Santos
+            <div class="flamengo-santos-separator"></div>
+            <div class="icone-santos">
+                <img src="santos.png" alt="Santos">
+            </div>
+            <div class="botoes-jogo">
+                <div class="botao-container">
+                  <button class="botão2" onclick="subtrairValor()">2.20</button> 
+                    <span style="font-weight: bold;">Flamengo</span>
+                </div>
+                <div class="botao-container">
+                  <button class="botão2" onclick="subtrairValor()">3.20</button> 
+                    <span style="font-weight: bold;">Empate</span>
+                </div>
+                <div class="botao-container">
+                  <button class="botão2" onclick="subtrairValor()">3.60</button> 
+                    <span style="font-weight: bold;">Santos</span>
+                </div>
+            <div class="texto-jogo2">
+              <div class="icone-Internacional">
+                  <img src="Internacional.png" alt="Internacional">
+              </div>
+              Internacional X América-MG
+              <div class="Internacional-América-MG-separator"></div>
+               <div class="icone-América-MG">
+                  <img src="América-MG.png" alt="América-MG">
+               </div>
+            <div class="botoes-jogo2">
+              <div class="botao-container2">
+               
+                <button class="botão2" onclick="subtrairValor()">1.60</button> 
+                  <span style="font-weight: bold;">Internacional</span>
+              </div>
+                <div class="botao-container2">
+                  <button class="botão2" onclick="subtrairValor()">2.40</button> 
+                  <span style="font-weight: bold;">Empate</span>
+              </div>
+                <div class="botao-container2">
+                  <button class="botão2" onclick="subtrairValor()">4.52</button> 
+                    <span style="font-weight: bold;">América-MG</span>
+                </div>
+                <div class="texto-jogo3">
+                  <div class="icone-Grêmio">
+                      <img src="Grêmio.png" alt="Grêmio">
+                  </div>
+                  Grêmio X Bahia
+                  <div class="Grêmio-Bahia-separator"></div>
+                  <div class="icone-Bahia">
+                      <img src="Bahia.png" alt="Bahia">
+                  </div>
+                  <div class="botoes-jogo3">
+                      <div class="botao-container3">
+                        <button class="botão2" onclick="subtrairValor()">1.96</button> 
+                          <span style="font-weight: bold;">Grêmio</span>
+                      </div>
+                      <div class="botao-container3">
+                        <button class="botão2" onclick="subtrairValor()">2.80</button> 
+                          <span style="font-weight: bold;">Empate</span>
+                      </div>
+                      <div class="botao-container3">
+                        <button class="botão2" onclick="subtrairValor()">4.10</button> 
+                          <span style="font-weight: bold;">Bahia</span>
+                      </div>
+                      <div class="input">
+                        <div>
+                          <div class="saldo-disponivel">
+                            Saldo disponível: <span id="saldo-disponivel">9999.99</span>
+                          </div>
+                          <div class="Insira">
+                        <input type="text" id="input-valor" placeholder="Insira o valor">
+                    </div>
+            </div>
+        </div>
+
+    <script>
+        function subtrairValor() {
+    const inputValorElement = document.getElementById("input-valor");
+    const saldoDisponivelElement = document.getElementById("saldo-disponivel");
+    
+    const valorInserido = parseFloat(inputValorElement.value);
+    const saldoDisponivel = parseFloat(saldoDisponivelElement.textContent);
+    
+    if (isNaN(valorInserido) || valorInserido <= 0) {
+      alert("Insira um valor válido maior que zero.");
+      return;
+    }
+    
+    const novoSaldo = saldoDisponivel - valorInserido;
+    saldoDisponivelElement.textContent = novoSaldo.toFixed(2);
+    
+    // Limpa o campo de input
+    inputValorElement.value = "";
+    mensagemApostaElement.textContent = "Aposta realizada com sucesso!";
+  }
+  
+        window.addEventListener('DOMContentLoaded', function() {
+            var retangulo = document.querySelector('.retangulo');
+            var retangulo2 = document.querySelector('.retangulo2');
+            retangulo.classList.add('loaded');
+            retangulo2.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
